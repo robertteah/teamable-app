@@ -20,5 +20,18 @@ button {
     font-size: 15px;
     height: 45px;
     border-radius: 5px;
+}
 
+button:hover {
+    cursor: pointer;
+}
+
+input {
+    width: 200px;
+    font-size: 15px;
+    padding: 10px;
+}
+
+#edit-view {
+    display: none;
 }
