@@ -51,17 +51,36 @@ export default {
         const userData = await this.fetchUserProfile()
         this.name = userData.name
         this.email = userData.email
-        this.interests =userData.interests
+        this.interest =userData.interest
     },
     methods: {
       handleEditProfile() {
         this.isEditMode = true
         },
-      handleUpdateProfile() {
+      async handleUpdateProfile() {
+        const payload = {
+            name: this.name,
+            email: this.email,
+            interest: this.interest
+        }
+        const resJson = await this.updadaUserProfile(payload)
+        console.log(resJson)
+
         this.isEditMode = false
         },
         async fetchUserProfile() {
             const res = await fetch('get-profile')
+            return await res.json()
+        },
+        async updadaUserProfile(payload) {
+            const res = await fetch('update-profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
             return await res.json()
         }
     }
